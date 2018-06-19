@@ -16,15 +16,30 @@ const devConfig = {
         filename: '[name].[hash].js',
     },
     module: {
-        rules: [{
-            test: /\.(css|less)$/,
-            use: ["style-loader", "css-loader?modules&localIdentName=[local]-[hash:base64:8]", "postcss-loader","less-loader"]
-        }]
+        rules: [
+            {
+                test: /\.(css|less)$/,
+                use: ["style-loader", "css-loader?modules&localIdentName=[local]-[hash:base64:8]", "postcss-loader","less-loader"]
+            },
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+            },
+        ]
     },
     plugins: [
        /*  new webpack.DefinePlugin({//模拟数据变量
             MOCK: true
         }) */
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                eslint: {
+                    configFile: './.eslintrc.js',
+                },
+            },
+        }),
     ],
     devServer: {
         port: 8030,

@@ -6,15 +6,15 @@ commonConfig = {
     entry: {
         app: [
             "babel-polyfill",
-            path.join(__dirname, 'src/index.js')
+            path.join(__dirname, 'src/index.js'),
         ],
-        vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
+        vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
     },
     output: {
         path: path.join(__dirname, './dist'),
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',
-        publicPath: "/"
+        publicPath: "/",
     },
     module: {
         rules: [{
